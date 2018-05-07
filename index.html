@@ -1,17 +1,40 @@
+<!--@author Македон Егор Александрович-->
+<!--@group 521702-->
+<!--@year 2018-->
+<!--@subject ЛОИС-->
+<!--@title Лабораторная работа N1-2-->
+<!--@task B3. B: Проверить является ли строка формулой логики высказываний.
+              3: Проверить является ли формула невыполнимой (противоречивой).-->
+
+<!--Декларация html документа-->
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!--Определение метаданных страницы: контент, кодировка-->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <!--Определение титульного названия страницы-->
         <title>Lois 1-2</title>
     </head>
+
+    <!--Подключение выполняемого javascript скрипта-->
     <script src="script.js"></script>
+
     <body>
         <div style="text-align: center">
             <h3>Формула логики высказываний:</h3>
-            <form onsubmit="">
+
+            <!--Input форма для ввода формулы логики высказываний.
+                По нажатии на кнопку submit вызывается стартовая функция run()-->
+            <form>
                 <input type="text" id="formula" placeholder="Введите формулу..." required>
-                <input type="submit">
+                <input type="button" value="submit" onclick="run()">
             </form>
+
+            <br>
+
+            <!--Ответ: является ли строка формулой логики высказываний-->
+            <h2>Ответ: <span id="answer1"></span></h2>
         </div>
     </body>
 </html>
