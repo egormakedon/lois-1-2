@@ -55,7 +55,9 @@ function run() {
         answer2.innerHTML = FORMULA_NON_PROTIVORECHIVAYA;
     }
 
-    printTableTruth(obj.table, obj.symbolSize);
+    if (obj != null) {
+        printTableTruth(obj.table, obj.symbolSize);
+    }
 }
 
 //Функция печати ответа в элемент answer на html документе
@@ -75,6 +77,7 @@ function validateFormula(formula) {
     return formula == R;
 }
 
+//@author Artem Trushkov
 //Функция рассчитывания таблицы истинности
 function calculateTableTruth(formula) {
     countAnswer = 0;
@@ -156,6 +159,7 @@ function printTableTruth(table, symbolSize) {
     tableElement.innerHTML = html;
 }
 
+//@author Artem Trushkov
 //Функция расчета входных параметров для формулы
 function calculateInputFormulaParameters(index, symbolSize) {
     let res = (index >>> 0).toString(2);
@@ -202,42 +206,37 @@ function calculateFormula(formula) {
 //Высчитывание простой формулы
 function calculateSimpleFormula(subFormula) {
     if (subFormula.indexOf(NEGATION) > -1) {
-        return findNEGATION(subFormula);
+        return calculateNegation(subFormula);
     }
 
     if (subFormula.indexOf(CONJUNCTION) > -1) {
-        return findCONJUNCTION(subFormula);
+        return calculateConjunction(subFormula);
     }
 
     if (subFormula.indexOf(DISJUNCTION) > -1) {
-        return findDISJUNCTION(subFormula);
+        return calculationDisjunction(subFormula);
     }
 
     if (subFormula.indexOf(IMPLICATION) > -1) {
-        return findIMPLICATION(subFormula);
+        return calculateImplication(subFormula);
     }
 
     if (subFormula.indexOf(EQUIVALENCE) > -1) {
-        return findEQUIVALENCE(subFormula);
+        return calculateEquivalence(subFormula);
     }
 }
 
 //Функция высчитывания отрицания
-function findNEGATION(subFormula) {
-    let number = parseInt(subFormula[2]);
-
-    if (number == 1) {
+function calculateNegation(subFormula) {
+    if (parseInt(subFormula[2]) == 1) {
         return 0;
     }
-
     return 1;
 }
 
 //Функция высчитывания конъюнкции
-function findCONJUNCTION(subFormula) {
-    let firstValue = parseInt(subFormula[1]);
-    let secondValue = parseInt(subFormula[3]);
-    if (firstValue && secondValue) {
+function calculateConjunction(subFormula) {
+    if (parseInt(subFormula[1]) && parseInt(subFormula[3])) {
         return 1;
     } else {
         return 0;
@@ -245,10 +244,8 @@ function findCONJUNCTION(subFormula) {
 }
 
 //Функция высчитывания дизъюнкции
-function findDISJUNCTION(subFormula) {
-    let firstValue = parseInt(subFormula[1]);
-    let secondValue = parseInt(subFormula[3]);
-    if (firstValue || secondValue) {
+function calculationDisjunction(subFormula) {
+    if (parseInt(subFormula[1]) || parseInt(subFormula[3])) {
         return 1;
     } else {
         return 0;
@@ -256,10 +253,8 @@ function findDISJUNCTION(subFormula) {
 }
 
 //Функция высчитывания импликации
-function findIMPLICATION(subFormula) {
-    let firstValue = parseInt(subFormula[1]);
-    let secondValue = parseInt(subFormula[4]);
-    if ((!firstValue) || secondValue) {
+function calculateImplication(subFormula) {
+    if ((!parseInt(subFormula[1])) || parseInt(subFormula[4])) {
         return 1;
     } else {
         return 0;
@@ -267,10 +262,8 @@ function findIMPLICATION(subFormula) {
 }
 
 //Функция высчитывания эквиваленции
-function findEQUIVALENCE(subFormula) {
-    let firstValue = parseInt(subFormula[1]);
-    let secondValue = parseInt(subFormula[3]);
-    if (firstValue == secondValue) {
+function calculateEquivalence(subFormula) {
+    if (parseInt(subFormula[1]) == parseInt(subFormula[3])) {
         return 1;
     } else {
         return 0;
