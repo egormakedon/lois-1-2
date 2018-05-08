@@ -21,7 +21,7 @@
     <script src="script.js"></script>
 
     <body>
-        <div style="text-align: center">
+        <div>
             <h3>Формула логики высказываний:</h3>
 
             <!--Input форма для ввода формулы логики высказываний.
@@ -35,6 +35,17 @@
 
             <!--Ответ: является ли строка формулой логики высказываний-->
             <h2>Ответ: <span id="answer1"></span></h2>
+
+            <!--Контейнер для второго задания-->
+            <div id="container" hidden>
+                <h2>Формула: <span id="formulaLabel"></span></h2>
+                <h2>Таблица истинности:</h2>
+                <table id="table" border="1" style="text-align: center;"></table>
+
+                <br>
+
+                <h2>Ответ: <span id="answer2"></span></h2>
+            </div>
         </div>
     </body>
 </html>
